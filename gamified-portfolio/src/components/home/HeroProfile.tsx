@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useTheme } from "@/components/layout/ThemeProvider"
 import { Expression } from "@/lib/types"
 import { characterIds, characters } from "@/lib/themes"
-import { ChevronLeft, ChevronRight, Menu } from "lucide-react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import TypewriterText from "@/components/ui/TypewriterText"
 import { siteConfig } from "@/lib/config"
 
@@ -39,10 +39,7 @@ export default function HeroProfile() {
 
   return (
     <section id="about" className="min-h-[85vh] relative flex flex-col justify-center pt-24 pb-12 px-6 sm:px-12">
-      <div className="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-20">
-        <button className="p-2 transition-colors hover:bg-white/5" style={{ color: theme.text }}>
-          <Menu size={28} />
-        </button>
+      <div className="absolute top-0 left-0 w-full p-6 flex justify-end items-center z-20">
         <button className="text-xs tracking-[0.2em] transition-colors hover:scale-105 font-bold" style={{ color: theme.primary }}>
           SIDE QUESTS
         </button>
