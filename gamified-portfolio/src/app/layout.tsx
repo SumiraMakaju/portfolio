@@ -14,8 +14,8 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "YOUR_NAME | Portfolio Quest",
-  description: "YOUR_TITLE - Interactive Gamified Portfolio",
+  title: "Sumira Makaju | Portfolio Quest",
+  description: "Sumira Makaju - Interactive Gamified Portfolio",
 }
 
 export default function RootLayout({
