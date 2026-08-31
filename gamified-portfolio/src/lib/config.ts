@@ -7,12 +7,12 @@ export const siteConfig: SiteConfig = {
   bio: [
     "Creative Game Developer and Graphic Designer with a passion for crafting immersive experiences. Skilled in Unity, C#, and 3D Math, I bring virtual worlds to life with engaging gameplay and stunning visuals.",
     "I am a curious and passionate developer who is always exploring something new to learn and use my learnings in a unique and fun way ",
-   // "on my way to create my own virtual world",
+    // "on my way to create my own virtual world",
   ],
   email: "mkju84sumi@gmail.com",
   github: "SumiraMakaju",
   linkedin: "https://www.linkedin.com/in/sumira-makaju/",
-  resumeUrl: "https://drive.google.com/file/d/1sysFfVuNqyC-sdtXNNzZF-oHvtYlOhFg/view?usp=sharing",
+  resumeUrl: "https://drive.google.com/file/d/145Xjx5r7j_tIAL0Iu59ExqwDdQepzKha/view?usp=sharing",
   weatherLocation: "Bhaktapur, Nepal",
   education: {
     institution: "Kathmandu University",
@@ -38,7 +38,7 @@ export const siteConfig: SiteConfig = {
       ],
     },*/
   ],
-   skills: [
+  skills: [
     {
       category: "Frontend",
       items: ["React", "Next.js", "Tailwind", "TypeScript"],
@@ -65,8 +65,8 @@ export const siteConfig: SiteConfig = {
     },
   ],
   projects: [
-    
-     {
+
+    {
       name: "ARLUDO",
       repo: "ARLudoGame",
       description: "An AR Ludo game.",
@@ -130,7 +130,7 @@ export const siteConfig: SiteConfig = {
       image: "/projects/tmt.png",
       difficulty: 4,
     },
-    
+
     {
       name: "SnapInsight AI",
       repo: "snap-insight1",
@@ -151,7 +151,7 @@ export const siteConfig: SiteConfig = {
       difficulty: 3,
     },
     */
-    
+
     {
       name: "Multilingual Hate Speech Detection",
       repo: "realtime-hatespeech-meet-en-ne",
@@ -161,5 +161,5 @@ export const siteConfig: SiteConfig = {
       image: "/projects/hatespeech.png",
       difficulty: 4,
     },
-    ],
+  ],
 }

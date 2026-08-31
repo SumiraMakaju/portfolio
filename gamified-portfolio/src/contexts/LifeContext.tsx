@@ -12,6 +12,8 @@ interface LifeContextType {
   level: number
   addXp: (amount: number) => void
   tradeXpForLife: (cost: number) => boolean
+  isInvincible: boolean
+  setInvincible: (v: boolean) => void
 }
 
 const LifeContext = createContext<LifeContextType>({
@@ -24,6 +26,8 @@ const LifeContext = createContext<LifeContextType>({
   level: 1,
   addXp: () => {},
   tradeXpForLife: () => false,
+  isInvincible: false,
+  setInvincible: () => {},
 })
 
 export function useLife() {
@@ -36,10 +40,12 @@ export function LifeProvider({ children }: { children: ReactNode }) {
   
   const [xp, setXp] = useState(0)
   const [level, setLevel] = useState(1)
+  const [isInvincible, setInvincible] = useState(false)
 
   const takeDamage = useCallback(() => {
+    if (isInvincible) return
     setHp((prev) => Math.max(0, prev - 1))
-  }, [])
+  }, [isInvincible])
 
   const heal = useCallback(() => {
     setHp((prev) => Math.min(maxHp, prev + 1))
@@ -85,7 +91,7 @@ export function LifeProvider({ children }: { children: ReactNode }) {
   }, [level, heal])
 
   return (
-    <LifeContext.Provider value={{ hp, maxHp, takeDamage, heal, reset, xp, level, addXp, tradeXpForLife }}>
+    <LifeContext.Provider value={{ hp, maxHp, takeDamage, heal, reset, xp, level, addXp, tradeXpForLife, isInvincible, setInvincible }}>
       {children}
     </LifeContext.Provider>
   )

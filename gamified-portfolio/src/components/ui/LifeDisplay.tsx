@@ -18,22 +18,26 @@ const Heart = ({ filled, color }: { filled: boolean; color?: string }) => (
 )
 
 export default function LifeDisplay() {
-  const { hp, maxHp, xp, level } = useLife()
+  const { hp, maxHp, xp, level, isInvincible } = useLife()
   const { theme } = useTheme()
 
   return (
     <div className="fixed top-6 right-6 z-50 flex flex-col gap-2 p-3 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl">
       <div className="flex gap-2 justify-center">
         {Array.from({ length: maxHp }).map((_, i) => {
-          const isFilled = i < hp
+          const isFilled = isInvincible || i < hp
+          const heartColor = isInvincible ? "#fbbf24" : theme?.primary
           return (
             <motion.div
               key={i}
               initial={false}
-              animate={{ scale: isFilled ? 1 : 0.8, opacity: isFilled ? 1 : 0.5 }}
+              animate={{ 
+                scale: isFilled ? 1 : 0.8, 
+                opacity: isFilled ? 1 : 0.5,
+              }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <Heart filled={isFilled} color={theme?.primary} />
+              <Heart filled={isFilled} color={heartColor} />
             </motion.div>
           )
         })}

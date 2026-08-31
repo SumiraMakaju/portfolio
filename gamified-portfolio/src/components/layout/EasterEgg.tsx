@@ -1,22 +1,25 @@
 "use client"
 
 import { useKonamiCode } from "@/hooks/useKonamiCode"
+import { useLife } from "@/contexts/LifeContext"
 import { motion, AnimatePresence } from "framer-motion"
 import { useEffect, useState } from "react"
 
 export default function EasterEgg() {
   const isUnlocked = useKonamiCode()
+  const { setInvincible } = useLife()
   const [showOverlay, setShowOverlay] = useState(false)
 
   useEffect(() => {
     if (isUnlocked) {
+      setInvincible(true)
       setShowOverlay(true)
       const timer = setTimeout(() => {
         setShowOverlay(false)
       }, 4000)
       return () => clearTimeout(timer)
     }
-  }, [isUnlocked])
+  }, [isUnlocked, setInvincible])
 
   return (
     <AnimatePresence>

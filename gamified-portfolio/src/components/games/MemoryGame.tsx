@@ -187,10 +187,10 @@ export default function MemoryGame() {
             >
               {/* Front (Face Down) */}
               <div 
-                className="absolute inset-0 rounded-xl border flex items-center justify-center bg-slate-900/80"
+                className="absolute inset-0 rounded-xl border overflow-hidden flex items-center justify-center bg-slate-900/80"
                 style={{ borderColor: `${theme?.primary}40`, backfaceVisibility: "hidden" }}
               >
-                <div className="w-2 h-2 rounded-full opacity-50" style={{ backgroundColor: theme?.primary }} />
+                <img src="/memorycard.png" alt="Card Back" className="w-full h-full object-cover" />
               </div>
               
               {/* Back (Face Up) */}
