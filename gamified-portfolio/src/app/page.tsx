@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { motion } from "framer-motion"
 import { useTheme } from "@/components/layout/ThemeProvider"
 import Background from "@/components/layout/Background"
 import ScrollProgress from "@/components/ui/ScrollProgress"
@@ -47,11 +48,13 @@ export default function Home() {
                     className="p-1 hover:scale-110 transition-transform bg-black/40 backdrop-blur-sm rounded-full border border-white/10"
                     title="Play Memory Game"
                   >
-                    <img 
-                      src={`/characters/${character || 'smart-cool'}/gameicon.png`} 
+                    <motion.img 
+                      src={`/icons/memory.png`} 
                       alt="Mini Game" 
-                      className="w-6 h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" 
-                      onError={(e) => { e.currentTarget.style.display = 'none' }}
+                      className="w-8 h-8 object-contain" 
+                      animate={{ y: [0, -5, 0] }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                      onError={(e: any) => { e.currentTarget.style.display = 'none' }}
                     />
                   </button>
                 </h2>
@@ -85,11 +88,13 @@ export default function Home() {
                 className="p-1 hover:scale-110 transition-transform bg-black/40 backdrop-blur-sm rounded-full border border-white/10"
                 title="Play Firewall Breaker"
               >
-                <img 
-                  src={`/characters/${character || 'smart-cool'}/gameicon.png`} 
+                <motion.img 
+                  src={`/icons/firewallbreaker.png`} 
                   alt="Mini Game" 
-                  className="w-6 h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" 
-                  onError={(e) => { e.currentTarget.style.display = 'none' }}
+                  className="w-8 h-8 object-contain" 
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                  onError={(e: any) => { e.currentTarget.style.display = 'none' }}
                 />
               </button>
             </h2>
