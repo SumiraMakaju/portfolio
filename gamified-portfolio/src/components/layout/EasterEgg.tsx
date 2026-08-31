@@ -37,17 +37,17 @@ export default function EasterEgg() {
             transition={{ type: "spring", damping: 15 }}
             className="text-center"
           >
-            <h1 
+            <h1
               className="text-4xl md:text-7xl font-black tracking-widest text-transparent bg-clip-text uppercase mb-4"
-              style={{ 
+              style={{
                 backgroundImage: "linear-gradient(to right, #22c55e, #10b981, #22c55e)",
                 textShadow: "0 0 40px rgba(34, 197, 94, 0.4)"
               }}
             >
-              System Overridden
+              secrt code enabled
             </h1>
             <p className="text-[#a7f3d0] tracking-widest uppercase font-bold text-xs md:text-sm shadow-black drop-shadow-xl animate-pulse">
-              Hidden Protocol Unlocked
+              Unlimited lives on games
             </p>
           </motion.div>
         </motion.div>

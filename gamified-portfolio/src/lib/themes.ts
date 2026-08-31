@@ -21,7 +21,7 @@ export const characters = {
   "hidden": {
     id: "hidden",
     name: "Glitch / Hidden",
-    subtitle: "The System Override",
+    subtitle: "Unlimited Lives",
   },
 } as const
 
