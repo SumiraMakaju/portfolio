@@ -8,15 +8,18 @@ import CharacterCompanion from "@/components/layout/CharacterCompanion"
 import HeroProfile from "@/components/home/HeroProfile"
 import SkillTree from "@/components/about/SkillTree"
 import QuestCard from "@/components/quests/QuestCard"
+import AchievementCard from "@/components/experience/AchievementCard"
 import { siteConfig } from "@/lib/config"
 import SideNav from "@/components/layout/SideNav"
 import Contact from "@/components/contact/Contact"
 import EasterEgg from "@/components/layout/EasterEgg"
+import MemoryGame from "@/components/games/MemoryGame"
 import BlockBreaker from "@/components/games/BlockBreaker"
 import GamePanel from "@/components/ui/GamePanel"
 
 export default function Home() {
   const { theme, character } = useTheme()
+  const [isMemoryOpen, setIsMemoryOpen] = useState(false)
   const [isFirewallOpen, setIsFirewallOpen] = useState(false)
 
   return (
@@ -38,6 +41,19 @@ export default function Home() {
               <div>
                 <h2 className="text-3xl font-bold tracking-[0.2em] mb-6 uppercase flex items-center gap-4" style={{ fontFamily: "var(--font-display)", color: theme?.primary }}>
                   My Arsenal
+                  {/* Game Icon Trigger */}
+                  <button 
+                    onClick={() => setIsMemoryOpen(true)}
+                    className="p-1 hover:scale-110 transition-transform bg-black/40 backdrop-blur-sm rounded-full border border-white/10"
+                    title="Play Memory Game"
+                  >
+                    <img 
+                      src={`/characters/${character || 'smart-cool'}/gameicon.png`} 
+                      alt="Mini Game" 
+                      className="w-6 h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" 
+                      onError={(e) => { e.currentTarget.style.display = 'none' }}
+                    />
+                  </button>
                 </h2>
                 <div className="space-y-4" style={{ color: theme?.text }}>
                   <p className="text-base leading-relaxed opacity-90">
@@ -115,6 +131,10 @@ export default function Home() {
           </p>
         </section>
       </main>
+
+      <GamePanel isOpen={isMemoryOpen} onClose={() => setIsMemoryOpen(false)} title="Tech Stack Memory">
+        <MemoryGame />
+      </GamePanel>
 
       <GamePanel isOpen={isFirewallOpen} onClose={() => setIsFirewallOpen(false)} title="Firewall Breaker">
         <BlockBreaker onWin={() => {}} />
