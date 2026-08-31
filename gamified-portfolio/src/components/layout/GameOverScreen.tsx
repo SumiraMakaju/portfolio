@@ -6,7 +6,7 @@ import { useTheme } from "@/components/layout/ThemeProvider"
 import { useEffect, useState } from "react"
 
 export default function GameOverScreen() {
-  const { hp, reset } = useLife()
+  const { hp, reset, xp, level, tradeXpForLife } = useLife()
   const { theme } = useTheme()
   const [countdown, setCountdown] = useState(9)
 
@@ -44,17 +44,36 @@ export default function GameOverScreen() {
               Continue? <span className="font-mono text-white">{countdown}</span>
             </p>
 
-            <button
-              onClick={reset}
-              className="px-8 py-4 text-lg font-bold tracking-widest uppercase transition-all duration-300 rounded-lg hover:scale-105 active:scale-95"
-              style={{ 
-                backgroundColor: theme?.primary || "#ffffff", 
-                color: theme?.background || "#000000",
-                boxShadow: `0 0 20px ${theme?.glow || "rgba(255,255,255,0.5)"}`
-              }}
-            >
-              Insert Coin to Revive
-            </button>
+            <div className="flex flex-col gap-4 items-center justify-center">
+              {((level - 1) * 100 + xp) >= 50 ? (
+                <button
+                  onClick={() => {
+                    if (tradeXpForLife(50)) {
+                      // Successfully traded
+                    }
+                  }}
+                  className="px-8 py-4 text-lg font-bold tracking-widest uppercase transition-all duration-300 rounded-lg hover:scale-105 active:scale-95 border border-white/20"
+                  style={{ 
+                    backgroundColor: theme?.primary || "#ffffff", 
+                    color: theme?.background || "#000000",
+                    boxShadow: `0 0 20px ${theme?.glow || "rgba(255,255,255,0.5)"}`
+                  }}
+                >
+                  Trade 50 XP to Revive
+                </button>
+              ) : (
+                <div className="text-sm uppercase tracking-widest text-white/40 font-bold mb-4">
+                  Not enough XP to revive (Need 50)
+                </div>
+              )}
+              
+              <button
+                onClick={reset}
+                className="text-xs uppercase tracking-widest text-white/50 hover:text-white transition-colors"
+              >
+                Reset Progress (Free)
+              </button>
+            </div>
           </motion.div>
         </motion.div>
       )}

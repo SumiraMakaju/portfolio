@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTheme } from "@/components/layout/ThemeProvider"
+import { useLife } from "@/contexts/LifeContext"
 import { ProjectConfig } from "@/lib/types"
 import { siteConfig } from "@/lib/config"
 import { fetchReadme } from "@/lib/github"
@@ -15,6 +16,7 @@ interface QuestCardProps {
 
 export default function QuestCard({ project }: QuestCardProps) {
   const { theme } = useTheme()
+  const { addXp } = useLife()
   const [showReadme, setShowReadme] = useState(false)
   const [readme, setReadme] = useState<string | null>(null)
   const [loadingReadme, setLoadingReadme] = useState(false)
@@ -128,13 +130,17 @@ export default function QuestCard({ project }: QuestCardProps) {
           </div>
 
           <a href={`https://github.com/${siteConfig.github}/${project.repo}`} target="_blank" rel="noreferrer"
+             onClick={() => addXp(20)}
              className="w-full py-2 rounded-lg flex items-center justify-center gap-1.5 text-[9px] font-bold tracking-wider transition-all hover:brightness-110 shadow-sm"
              style={{ background: `linear-gradient(135deg, ${theme.primary}, ${theme.secondary})`, color: '#fff' }}>
             <Github size={14} /> VIEW ON GITHUB
           </a>
           
           <button 
-            onClick={toggleReadme}
+            onClick={() => {
+              addXp(20)
+              toggleReadme()
+            }}
             className="w-full py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white border border-white/10 flex items-center justify-center gap-1.5 text-[9px] font-bold tracking-wider transition-all shadow-sm"
           >
             <FileText size={14} /> README

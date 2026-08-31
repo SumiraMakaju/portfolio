@@ -18,24 +18,43 @@ const Heart = ({ filled, color }: { filled: boolean; color?: string }) => (
 )
 
 export default function LifeDisplay() {
-  const { hp, maxHp } = useLife()
+  const { hp, maxHp, xp, level } = useLife()
   const { theme } = useTheme()
 
   return (
-    <div className="fixed top-6 right-6 z-50 flex gap-2 p-3 rounded-full bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl">
-      {Array.from({ length: maxHp }).map((_, i) => {
-        const isFilled = i < hp
-        return (
-          <motion.div
-            key={i}
-            initial={false}
-            animate={{ scale: isFilled ? 1 : 0.8, opacity: isFilled ? 1 : 0.5 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          >
-            <Heart filled={isFilled} color={theme?.primary} />
-          </motion.div>
-        )
-      })}
+    <div className="fixed top-6 right-6 z-50 flex flex-col gap-2 p-3 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl">
+      <div className="flex gap-2 justify-center">
+        {Array.from({ length: maxHp }).map((_, i) => {
+          const isFilled = i < hp
+          return (
+            <motion.div
+              key={i}
+              initial={false}
+              animate={{ scale: isFilled ? 1 : 0.8, opacity: isFilled ? 1 : 0.5 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <Heart filled={isFilled} color={theme?.primary} />
+            </motion.div>
+          )
+        })}
+      </div>
+      
+      {/* XP Bar */}
+      <div className="w-full mt-1">
+        <div className="flex justify-between items-center mb-1">
+          <span className="text-[9px] font-bold tracking-widest uppercase text-white/70">Level {level}</span>
+          <span className="text-[9px] font-bold tracking-widest uppercase text-white/50">{xp}/100</span>
+        </div>
+        <div className="w-full h-1.5 bg-black/60 rounded-full overflow-hidden border border-white/5 relative">
+          <motion.div 
+            className="h-full rounded-full" 
+            style={{ backgroundColor: theme?.primary }}
+            initial={{ width: 0 }}
+            animate={{ width: `${xp}%` }}
+            transition={{ type: "spring", stiffness: 100 }}
+          />
+        </div>
+      </div>
     </div>
   )
 }

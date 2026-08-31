@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/layout/ThemeProvider"
 import { LifeProvider } from "@/contexts/LifeContext"
 import LifeDisplay from "@/components/ui/LifeDisplay"
 import GameOverScreen from "@/components/layout/GameOverScreen"
+import XPTracker from "@/components/layout/XPTracker"
 import "./globals.css"
 
 const inter = Inter({
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body className="antialiased" style={{ fontFamily: "var(--font-body)" }}>
         <ThemeProvider>
           <LifeProvider>
+            <XPTracker />
             <LifeDisplay />
             <GameOverScreen />
             {children}

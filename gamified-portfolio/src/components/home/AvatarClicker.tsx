@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTheme } from "@/components/layout/ThemeProvider"
+import { useLife } from "@/contexts/LifeContext"
 import { Expression } from "@/lib/types"
 import { characterIds, characters } from "@/lib/themes"
 import { ChevronLeft, ChevronRight } from "lucide-react"
@@ -11,17 +12,26 @@ import SlidingPuzzle from "@/components/games/SlidingPuzzle"
 
 export default function AvatarClicker() {
   const { character, setCharacter, theme } = useTheme()
+  const { xp, level, addXp } = useLife()
+  
   const [expression, setExpression] = useState<Expression>("default")
   const [hovered, setHovered] = useState(false)
   
-  const [xp, setXp] = useState(0)
-  const [level, setLevel] = useState(1)
   const [clicks, setClicks] = useState<{id: number, x: number, y: number}[]>([])
   const [isLevelingUp, setIsLevelingUp] = useState(false)
   const [isPuzzleOpen, setIsPuzzleOpen] = useState(false)
 
   const currentIndex = characterIds.indexOf(character || "smart-cool")
   const config = characters[character || "smart-cool"]
+
+  // Trigger level up animation when global level changes
+  useEffect(() => {
+    if (level > 1) {
+      setIsLevelingUp(true)
+      const timer = setTimeout(() => setIsLevelingUp(false), 2000)
+      return () => clearTimeout(timer)
+    }
+  }, [level])
 
   useEffect(() => {
     if (!hovered && !isLevelingUp) {
@@ -53,14 +63,7 @@ export default function AvatarClicker() {
       setClicks(prev => prev.filter(c => c.id !== newClick.id))
     }, 1000)
 
-    if (xp + 10 >= 100) {
-      setXp(0)
-      setLevel(l => l + 1)
-      setIsLevelingUp(true)
-      setTimeout(() => setIsLevelingUp(false), 2000)
-    } else {
-      setXp(prev => prev + 10)
-    }
+    addXp(10)
   }
 
   if (!theme) return null
