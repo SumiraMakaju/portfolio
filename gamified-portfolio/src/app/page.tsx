@@ -29,7 +29,7 @@ export default function Home() {
       <SideNav />
       {/* <ScrollProgress /> */}
       <CharacterCompanion />
-      <main className="relative z-10 pb-24">
+      <main className="relative z-10 pb-24 lg:pl-32">
         
         <HeroProfile />
         
