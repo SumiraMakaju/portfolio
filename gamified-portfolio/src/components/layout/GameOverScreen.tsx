@@ -45,10 +45,10 @@ export default function GameOverScreen() {
             </p>
 
             <div className="flex flex-col gap-4 items-center justify-center">
-              {((level - 1) * 100 + xp) >= 50 ? (
+              {((level - 1) * 100 + xp) >= 100 ? (
                 <button
                   onClick={() => {
-                    if (tradeXpForLife(50)) {
+                    if (tradeXpForLife(100)) {
                       // Successfully traded
                     }
                   }}
@@ -59,11 +59,11 @@ export default function GameOverScreen() {
                     boxShadow: `0 0 20px ${theme?.glow || "rgba(255,255,255,0.5)"}`
                   }}
                 >
-                  Trade 50 XP to Revive
+                  Trade 100 XP to Revive
                 </button>
               ) : (
                 <div className="text-sm uppercase tracking-widest text-white/40 font-bold mb-4">
-                  Not enough XP to revive (Need 50)
+                  Not enough XP to revive (Need 100)
                 </div>
               )}
               

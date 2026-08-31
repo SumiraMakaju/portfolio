@@ -40,12 +40,12 @@ export default function LifeDisplay() {
       </div>
       
       {/* XP Bar */}
-      <div className="w-full mt-1">
-        <div className="flex justify-between items-center mb-1">
-          <span className="text-[9px] font-bold tracking-widest uppercase text-white/70">Level {level}</span>
-          <span className="text-[9px] font-bold tracking-widest uppercase text-white/50">{xp}/100</span>
+      <div className="w-full mt-0.5 px-1">
+        <div className="flex justify-between items-center mb-0.5">
+          <span className="text-[7px] font-bold tracking-widest uppercase text-white/70">Lv {level}</span>
+          <span className="text-[7px] font-bold tracking-widest uppercase text-white/50">{xp}/100</span>
         </div>
-        <div className="w-full h-1.5 bg-black/60 rounded-full overflow-hidden border border-white/5 relative">
+        <div className="w-full h-1 bg-black/60 rounded-full overflow-hidden border border-white/5 relative">
           <motion.div 
             className="h-full rounded-full" 
             style={{ backgroundColor: theme?.primary }}

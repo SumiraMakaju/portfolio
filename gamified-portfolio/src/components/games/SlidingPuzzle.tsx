@@ -109,6 +109,7 @@ export default function SlidingPuzzle() {
       <AnimatePresence>
         {won && (
           <motion.div
+            key="won"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm rounded-2xl"
@@ -123,9 +124,28 @@ export default function SlidingPuzzle() {
             </button>
           </motion.div>
         )}
+        
+        {moves >= MAX_MOVES && !won && (
+          <motion.div
+            key="failed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm rounded-2xl"
+          >
+            <h2 className="text-2xl font-bold mb-2 uppercase tracking-widest text-red-500">Failed!</h2>
+            <p className="text-[10px] text-white/60 uppercase tracking-widest mb-4">Out of Moves</p>
+            <button
+              onClick={resetGame}
+              className="mt-2 px-4 py-2 rounded-lg font-bold tracking-widest uppercase text-xs transition-transform hover:scale-105"
+              style={{ backgroundColor: theme?.primary, color: theme?.background }}
+            >
+              Retry
+            </button>
+          </motion.div>
+        )}
       </AnimatePresence>
 
-      <div className="relative aspect-square w-full bg-black/40 rounded-xl overflow-hidden border border-white/10">
+      <div className="relative aspect-square w-full bg-black/40 rounded-xl overflow-hidden border border-black/10 shadow-inner">
         {tiles.map((tile, idx) => {
           if (tile === -1) return null // Empty tile
 
@@ -158,14 +178,22 @@ export default function SlidingPuzzle() {
         })}
       </div>
 
-      <div className="mt-4 text-center">
+      <div className="mt-4 flex justify-center gap-6 relative z-30">
         {!won && (
-          <button 
-            onClick={handleGiveUp}
-            className="text-[10px] uppercase tracking-widest text-white/40 hover:text-red-500 transition-colors"
-          >
-            Give Up (Costs 1 HP)
-          </button>
+          <>
+            <button 
+              onClick={resetGame}
+              className="text-[10px] font-bold uppercase tracking-widest text-black/40 hover:text-black transition-colors"
+            >
+              Restart
+            </button>
+            <button 
+              onClick={handleGiveUp}
+              className="text-[10px] font-bold uppercase tracking-widest text-black/40 hover:text-red-500 transition-colors"
+            >
+              Give Up (Costs 1 HP)
+            </button>
+          </>
         )}
       </div>
     </div>
