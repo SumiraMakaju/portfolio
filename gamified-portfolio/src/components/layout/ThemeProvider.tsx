@@ -3,6 +3,7 @@
 import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react"
 import { CharacterId, ThemeColors } from "@/lib/types"
 import { themes } from "@/lib/themes"
+import { useKonamiCode } from "@/hooks/useKonamiCode"
 
 interface ThemeContextType {
   character: CharacterId | null
@@ -24,11 +25,19 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   // Start with 'smart-cool' selected by default so the page is instantly colorful
   const [character, setCharacterState] = useState<CharacterId>("smart-cool")
   const [theme, setTheme] = useState<ThemeColors>(themes["smart-cool"])
+  
+  const isKonamiUnlocked = useKonamiCode()
 
   const setCharacter = useCallback((id: CharacterId) => {
     setCharacterState(id)
     setTheme(themes[id])
   }, [])
+
+  useEffect(() => {
+    if (isKonamiUnlocked) {
+      setCharacter("hidden")
+    }
+  }, [isKonamiUnlocked, setCharacter])
 
   useEffect(() => {
     if (!character) return

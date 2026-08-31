@@ -11,7 +11,7 @@ export default function Contact() {
   if (!theme) return null
 
   return (
-    <section id="contact" className="flex flex-col items-center justify-center py-16 px-6 mb-12 relative z-10">
+    <section id="contact" className="flex flex-col items-center justify-center py-16 px-6 mb-12 relative z-10 w-full">
       <div className="w-full max-w-3xl flex flex-col items-center text-center">
 
         <div className="flex flex-col sm:flex-row gap-6 w-full max-w-lg">

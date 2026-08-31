@@ -18,6 +18,11 @@ export const characters = {
     name: "Confident",
     subtitle: "The Bold Visionary",
   },
+  "hidden": {
+    id: "hidden",
+    name: "Glitch / Hidden",
+    subtitle: "The System Override",
+  },
 } as const
 
 export const themes: Record<CharacterId, ThemeColors> = {
@@ -74,5 +79,23 @@ export const themes: Record<CharacterId, ThemeColors> = {
     particleColor1: "#ef4444",
     particleColor2: "#f87171",
     particleColor3: "#fbbf24",
+  },
+  "hidden": {
+    primary: "#22c55e",
+    secondary: "#10b981",
+    accent: "#16a34a",
+    background: "#050505",
+    backgroundAlt: "#064e3b",
+    surface: "#064e3b",
+    surfaceAlt: "#065f46",
+    text: "#ffffff",
+    textMuted: "#a7f3d0",
+    glow: "rgba(34, 197, 94, 0.6)",
+    gradientFrom: "#022c22",
+    gradientVia: "#064e3b",
+    gradientTo: "#065f46",
+    particleColor1: "#22c55e",
+    particleColor2: "#4ade80",
+    particleColor3: "#10b981",
   },
 }

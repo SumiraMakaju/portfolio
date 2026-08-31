@@ -1,6 +1,9 @@
 import type { Metadata } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
 import { ThemeProvider } from "@/components/layout/ThemeProvider"
+import { LifeProvider } from "@/contexts/LifeContext"
+import LifeDisplay from "@/components/ui/LifeDisplay"
+import GameOverScreen from "@/components/layout/GameOverScreen"
 import "./globals.css"
 
 const inter = Inter({
@@ -26,7 +29,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body className="antialiased" style={{ fontFamily: "var(--font-body)" }}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <LifeProvider>
+            <LifeDisplay />
+            <GameOverScreen />
+            {children}
+          </LifeProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -1,4 +1,4 @@
-export type CharacterId = "shy-sweet" | "smart-cool" | "confident"
+export type CharacterId = "shy-sweet" | "smart-cool" | "confident" | "hidden"
 
 export type Expression = "default" | "smile" | "wink"
 
