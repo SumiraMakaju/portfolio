@@ -5,10 +5,10 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useTheme } from "@/components/layout/ThemeProvider"
 import { Expression } from "@/lib/types"
 import { characterIds, characters } from "@/lib/themes"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight, Menu, FileText } from "lucide-react"
 import TypewriterText from "@/components/ui/TypewriterText"
 import { siteConfig } from "@/lib/config"
-
+import {FaGithub as Github} from "react-icons/fa"
 export default function HeroProfile() {
   const { character, setCharacter, theme } = useTheme()
   const [expression, setExpression] = useState<Expression>("default")
@@ -39,7 +39,10 @@ export default function HeroProfile() {
 
   return (
     <section id="about" className="min-h-[85vh] relative flex flex-col justify-center pt-24 pb-12 px-6 sm:px-12">
-      <div className="absolute top-0 left-0 w-full p-6 flex justify-end items-center z-20">
+      <div className="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-20">
+        <button className="p-2 transition-colors hover:bg-white/5" style={{ color: theme.text }}>
+          <Menu size={28} />
+        </button>
         <button className="text-xs tracking-[0.2em] transition-colors hover:scale-105 font-bold" style={{ color: theme.primary }}>
           SIDE QUESTS
         </button>
@@ -97,7 +100,8 @@ export default function HeroProfile() {
           <h3 className="text-xl sm:text-2xl font-medium tracking-wide mb-8" style={{ color: theme.primary }}>
             {siteConfig.title}
           </h3>
-          <div className="space-y-6 mb-10">
+          
+          <div className="space-y-6 mb-8">
             {siteConfig.bio.map((line, i) => (
               <motion.p
                 key={i}
@@ -111,11 +115,34 @@ export default function HeroProfile() {
               </motion.p>
             ))}
           </div>
-          <div className="flex items-center gap-2 text-sm tracking-widest uppercase font-bold" style={{ color: theme.textMuted }}>
+          
+          <div className="flex items-center gap-2 text-sm tracking-widest uppercase font-bold mb-10" style={{ color: theme.textMuted }}>
             <span>LOCATION: {siteConfig.location}</span>
           </div>
-        </div>
 
+          <div className="flex flex-wrap gap-4">
+            <a 
+              href={`https://github.com/${siteConfig.github}`} 
+              target="_blank" 
+              rel="noreferrer"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all font-bold tracking-widest text-xs uppercase backdrop-blur-md shadow-xl"
+              style={{ color: theme.primary }}
+            >
+              <Github size={18} />
+              GitHub
+            </a>
+            <a 
+              href={siteConfig.resumeUrl} 
+              target="_blank" 
+              rel="noreferrer"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all font-bold tracking-widest text-xs uppercase text-white backdrop-blur-md shadow-xl"
+            >
+              <FileText size={18} />
+              Resume
+            </a>
+          </div>
+
+        </div>
       </div>
     </section>
   )
