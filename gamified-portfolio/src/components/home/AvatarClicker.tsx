@@ -140,13 +140,13 @@ export default function AvatarClicker() {
         <div className="absolute right-0 sm:right-4 top-1/2 -translate-y-1/2 z-40">
           <button 
             onClick={() => setIsPuzzleOpen(true)}
-            className="p-2 hover:scale-110 transition-transform bg-black/40 backdrop-blur-sm rounded-full border border-white/10"
+            className="hover:scale-110 transition-transform"
             title="Play Sliding Puzzle"
           >
             <motion.img 
               src={`/icons/puzzle.png`} 
               alt="Mini Game" 
-              className="w-10 h-10 object-contain opacity-90 hover:opacity-100 transition-opacity" 
+              className="w-12 h-12 object-contain opacity-90 hover:opacity-100 transition-opacity" 
               animate={{ y: [0, -5, 0] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
               onError={(e: any) => { e.currentTarget.style.display = 'none' }}

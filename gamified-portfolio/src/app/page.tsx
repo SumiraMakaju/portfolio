@@ -45,13 +45,13 @@ export default function Home() {
                   {/* Game Icon Trigger */}
                   <button 
                     onClick={() => setIsMemoryOpen(true)}
-                    className="p-1 hover:scale-110 transition-transform bg-black/40 backdrop-blur-sm rounded-full border border-white/10"
+                    className="hover:scale-110 transition-transform"
                     title="Play Memory Game"
                   >
                     <motion.img 
                       src={`/icons/memory.png`} 
                       alt="Mini Game" 
-                      className="w-8 h-8 object-contain" 
+                      className="w-12 h-12 object-contain" 
                       animate={{ y: [0, -5, 0] }}
                       transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                       onError={(e: any) => { e.currentTarget.style.display = 'none' }}
@@ -85,13 +85,13 @@ export default function Home() {
               {/* Game Icon Trigger */}
               <button 
                 onClick={() => setIsFirewallOpen(true)}
-                className="p-1 hover:scale-110 transition-transform bg-black/40 backdrop-blur-sm rounded-full border border-white/10"
+                className="hover:scale-110 transition-transform"
                 title="Play Firewall Breaker"
               >
                 <motion.img 
                   src={`/icons/firewallbreaker.png`} 
                   alt="Mini Game" 
-                  className="w-8 h-8 object-contain" 
+                  className="w-12 h-12 object-contain" 
                   animate={{ y: [0, -5, 0] }}
                   transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                   onError={(e: any) => { e.currentTarget.style.display = 'none' }}
