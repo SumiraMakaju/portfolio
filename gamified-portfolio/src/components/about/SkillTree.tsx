@@ -25,8 +25,10 @@ export default function SkillTree({ skills }: SkillTreeProps) {
         setDimensions({ radius: 260, center: 320 })
       } else if (window.innerWidth >= 640) {
         setDimensions({ radius: 180, center: 240 })
-      } else {
+      } else if (window.innerWidth >= 400) {
         setDimensions({ radius: 120, center: 160 })
+      } else {
+        setDimensions({ radius: 95, center: 130 }) // Safely fits inside 320px displays (iPhone SE)
       }
     }
 
@@ -135,7 +137,7 @@ export default function SkillTree({ skills }: SkillTreeProps) {
                 }}
               />
               <span
-                className="absolute -bottom-5 sm:-bottom-6 lg:-bottom-8 text-[8px] sm:text-[10px] lg:text-base whitespace-nowrap font-bold tracking-wider transition-colors duration-300 uppercase"
+                className="absolute -bottom-6 sm:-bottom-6 lg:-bottom-8 left-1/2 -translate-x-1/2 text-center text-[7px] sm:text-[10px] lg:text-base whitespace-nowrap font-bold tracking-wider transition-colors duration-300 uppercase"
                 style={{ color: isHovered ? theme.primary : theme.textMuted }}
               >
                 {skill.category}

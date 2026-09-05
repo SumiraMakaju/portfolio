@@ -19,8 +19,6 @@ function DialogueBox({ text, onClose }: { text: string; onClose: () => void }) {
   const [typing, setTyping] = useState(true)
 
   useEffect(() => {
-    setDisplayed("")
-    setTyping(true)
     let i = 0
     const interval = setInterval(() => {
       setDisplayed(text.slice(0, i + 1))
@@ -222,6 +220,7 @@ export default function IsometricRoom({ onClose }: IsometricRoomProps) {
       <AnimatePresence>
         {activeDialogue && (
           <DialogueBox
+            key={activeDialogue}
             text={HOBBIES[activeDialogue]}
             onClose={() => setActiveDialogue(null)}
           />

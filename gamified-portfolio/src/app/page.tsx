@@ -8,7 +8,7 @@ import ScrollProgress from "@/components/ui/ScrollProgress"
 import CharacterCompanion from "@/components/layout/CharacterCompanion"
 import HeroProfile from "@/components/home/HeroProfile"
 import SkillTree from "@/components/about/SkillTree"
-import QuestCard from "@/components/quests/QuestCard"
+import TarotDeck from "@/components/quests/TarotDeck"
 import AchievementCard from "@/components/experience/AchievementCard"
 import { siteConfig } from "@/lib/config"
 import SideNav from "@/components/layout/SideNav"
@@ -17,6 +17,8 @@ import EasterEgg from "@/components/layout/EasterEgg"
 import MemoryGame from "@/components/games/MemoryGame"
 import BlockBreaker from "@/components/games/BlockBreaker"
 import GamePanel from "@/components/ui/GamePanel"
+import { FaFigma as Figma } from "react-icons/fa"
+import { Palette } from "lucide-react"
 
 export default function Home() {
   const { theme, character } = useTheme()
@@ -29,7 +31,7 @@ export default function Home() {
       <SideNav />
       {/* <ScrollProgress /> */}
       <CharacterCompanion />
-      <main className="relative z-10 pb-24 lg:pl-32">
+      <main className="relative z-10 pb-24 lg:pl-32 overflow-x-hidden">
         
         <HeroProfile />
         
@@ -78,9 +80,9 @@ export default function Home() {
         </section>
         
         {/* Main Quests Section */}
-        <section id="quests" className="py-20 px-6 sm:px-12 relative">
+        <section id="quests" className="py-10 sm:py-20 px-4 sm:px-12 relative">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold tracking-[0.2em] text-center mb-16 uppercase flex items-center justify-center gap-4" style={{ fontFamily: "var(--font-display)", color: theme?.primary }}>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-[0.2em] text-center mb-8 sm:mb-16 uppercase flex items-center justify-center gap-4" style={{ fontFamily: "var(--font-display)", color: theme?.primary }}>
               Main Quests
               {/* Game Icon Trigger */}
               <button 
@@ -98,17 +100,15 @@ export default function Home() {
                 />
               </button>
             </h2>
-            <div className="flex flex-col gap-8">
-              {siteConfig.projects.map((project, index) => (
-                <QuestCard key={index} project={project} />
-              ))}
+            <div className="flex flex-col gap-8 w-full items-center justify-center">
+              <TarotDeck projects={siteConfig.projects} />
             </div>
           </div>
         </section>
 
         {/* Experience Section */}
 
-        <section id="experience" className="py-20 px-6 sm:px-12">
+        <section id="experience" className="py-10 sm:py-20 px-4 sm:px-12">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold tracking-[0.2em] text-center mb-16 uppercase" style={{ fontFamily: "var(--font-display)", color: theme?.secondary }}>
               Achievements
@@ -131,6 +131,39 @@ export default function Home() {
           </p>
           <EasterEgg />
           <Contact />
+        </section>
+
+        {/* References & Assets */}
+        <section id="assets" className="py-12 px-6 flex flex-col items-center justify-center text-center border-t border-white/10 mt-12 max-w-3xl mx-auto">
+          <h3 className="text-sm font-bold mb-6 uppercase tracking-widest" style={{ color: theme?.textMuted }}>
+            Design Assets & References
+          </h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {siteConfig.figmaUrl && (
+              <a 
+                href={siteConfig.figmaUrl} 
+                target="_blank" 
+                rel="noreferrer"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all font-bold tracking-widest text-xs uppercase backdrop-blur-md shadow-sm hover:-translate-y-1"
+                style={{ color: "#F24E1E" }}
+              >
+                <Figma size={18} />
+                Figma Board
+              </a>
+            )}
+            {siteConfig.canvaUrl && (
+              <a 
+                href={siteConfig.canvaUrl} 
+                target="_blank" 
+                rel="noreferrer"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all font-bold tracking-widest text-xs uppercase backdrop-blur-md shadow-sm hover:-translate-y-1"
+                style={{ color: "#00C4CC" }}
+              >
+                <Palette size={18} />
+                Canva Assets
+              </a>
+            )}
+          </div>
           <p className="mt-24 text-[10px] tracking-widest uppercase opacity-40" style={{ color: theme?.text }}>
             THANK YOU FOR PLAYING
           </p>

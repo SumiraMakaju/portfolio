@@ -4,11 +4,13 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTheme } from "@/components/layout/ThemeProvider"
 import { useLife } from "@/contexts/LifeContext"
+
 import { Expression } from "@/lib/types"
 import { characterIds, characters } from "@/lib/themes"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import GamePanel from "@/components/ui/GamePanel"
 import SlidingPuzzle from "@/components/games/SlidingPuzzle"
+import TypewriterText from "@/components/ui/TypewriterText"
 
 export default function AvatarClicker() {
   const { character, setCharacter, theme } = useTheme()
@@ -28,8 +30,16 @@ export default function AvatarClicker() {
   useEffect(() => {
     if (level > 1) {
       setIsLevelingUp(true)
-      const timer = setTimeout(() => setIsLevelingUp(false), 2000)
-      return () => clearTimeout(timer)
+      document.body.classList.add("level-up-active")
+      
+      const timer = setTimeout(() => {
+        setIsLevelingUp(false)
+        document.body.classList.remove("level-up-active")
+      }, 2000)
+      return () => {
+        clearTimeout(timer)
+        document.body.classList.remove("level-up-active")
+      }
     }
   }, [level])
 
@@ -59,6 +69,11 @@ export default function AvatarClicker() {
     const newClick = { id: Date.now(), x, y }
     setClicks(prev => [...prev, newClick])
     
+    // Trigger particle explosion at global mouse coordinates
+    import('@/lib/particles').then(({ triggerExplosion }) => {
+      if (theme) triggerExplosion(e.clientX, e.clientY, [theme.particleColor1, theme.particleColor2, theme.particleColor3, "#ffffff"]);
+    });
+    
     setTimeout(() => {
       setClicks(prev => prev.filter(c => c.id !== newClick.id))
     }, 1000)
@@ -69,10 +84,30 @@ export default function AvatarClicker() {
   if (!theme) return null
 
   return (
-    <div className="flex flex-col items-center justify-center p-4">
-      <span className="text-[10px] tracking-[0.25em] uppercase font-bold mb-8" style={{ color: theme.textMuted }}>
-        [ Active Avatar ]
-      </span>
+    <div className="flex flex-col items-center justify-center p-4 relative w-full">
+      {/* Game Icon Trigger moved to top right to avoid blocking arrows */}
+      <div className="absolute top-0 right-0 sm:top-4 sm:right-4 z-40">
+        <button 
+          onClick={() => setIsPuzzleOpen(true)}
+          className="hover:scale-110 transition-transform"
+          title="Play Sliding Puzzle"
+        >
+          <motion.img 
+            src={`/icons/puzzle.png`} 
+            alt="Mini Game" 
+            className="w-10 h-10 object-contain opacity-90 hover:opacity-100 transition-opacity" 
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+            onError={(e: any) => { e.currentTarget.style.display = 'none' }}
+          />
+        </button>
+      </div>
+
+      <TypewriterText 
+        text="CHOOSE YOUR CHARACTER"
+        className="text-[10px] tracking-[0.25em] uppercase font-bold mb-8 text-center" 
+        style={{ color: theme.textMuted }} 
+      />
       
       <div className="flex items-center gap-6 w-full justify-center mb-6 relative">
         <button onClick={handlePrev} className="p-2 transition-transform hover:-translate-x-1 z-30" style={{ color: theme.primary }}>
@@ -136,23 +171,7 @@ export default function AvatarClicker() {
           <ChevronRight size={40} strokeWidth={2} />
         </button>
 
-        {/* Game Icon Trigger */}
-        <div className="absolute right-0 sm:right-4 top-1/2 -translate-y-1/2 z-40">
-          <button 
-            onClick={() => setIsPuzzleOpen(true)}
-            className="hover:scale-110 transition-transform"
-            title="Play Sliding Puzzle"
-          >
-            <motion.img 
-              src={`/icons/puzzle.png`} 
-              alt="Mini Game" 
-              className="w-12 h-12 object-contain opacity-90 hover:opacity-100 transition-opacity" 
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-              onError={(e: any) => { e.currentTarget.style.display = 'none' }}
-            />
-          </button>
-        </div>
+
       </div>
 
       <div className="flex flex-col items-center w-48 mb-6">

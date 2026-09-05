@@ -84,7 +84,13 @@ export async function fetchReadme(
     )
     if (!res.ok) return null
     const data = await res.json()
-    const content = atob(data.content)
+    const binaryStr = atob(data.content.replace(/\s/g, ''))
+    const bytes = new Uint8Array(binaryStr.length)
+    for (let i = 0; i < binaryStr.length; i++) {
+      bytes[i] = binaryStr.charCodeAt(i)
+    }
+    const content = new TextDecoder('utf-8').decode(bytes)
+    
     setCache(cacheKey, content)
     return content
   } catch {

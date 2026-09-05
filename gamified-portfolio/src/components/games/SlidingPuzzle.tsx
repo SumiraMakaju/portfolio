@@ -27,7 +27,7 @@ export default function SlidingPuzzle() {
 
   const resetGame = () => {
     // Generate solvable puzzle
-    let initialTiles = Array.from({ length: GRID_SIZE * GRID_SIZE - 1 }, (_, i) => i)
+    const initialTiles = Array.from({ length: GRID_SIZE * GRID_SIZE - 1 }, (_, i) => i)
     initialTiles.push(-1) // -1 is the empty space
 
     // Shuffle by making random valid moves from solved state to guarantee solvability

@@ -45,7 +45,7 @@ export default function BlockBreaker({ onWin }: { onWin: () => void }) {
 
     // Game variables
     const paddle = { height: 10, width: 75, x: canvas.width / 2 - 37.5 }
-    let ball = { x: canvas.width / 2, y: canvas.height - 30, dx: 3, dy: -3, radius: 5 }
+    const ball = { x: canvas.width / 2, y: canvas.height - 30, dx: 3, dy: -3, radius: 5 }
     
     // Controls
     let rightPressed = false

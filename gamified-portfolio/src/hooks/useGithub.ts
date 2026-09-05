@@ -13,12 +13,11 @@ interface UseGitHubResult {
 export function useGitHub(owner: string, repoName: string): UseGitHubResult {
   const [repo, setRepo] = useState<GitHubRepo | null>(null)
   const [readme, setReadme] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(!!owner && !!repoName)
   const [error, setError] = useState(false)
 
   useEffect(() => {
     if (!owner || !repoName) {
-      setLoading(false)
       return
     }
 

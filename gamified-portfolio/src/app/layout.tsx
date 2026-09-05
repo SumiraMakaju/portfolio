@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
 import { ThemeProvider } from "@/components/layout/ThemeProvider"
 import { LifeProvider } from "@/contexts/LifeContext"
+
 import LifeDisplay from "@/components/ui/LifeDisplay"
 import GameOverScreen from "@/components/layout/GameOverScreen"
 import XPTracker from "@/components/layout/XPTracker"
@@ -30,14 +31,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body className="antialiased" style={{ fontFamily: "var(--font-body)" }}>
-        <ThemeProvider>
-          <LifeProvider>
-            <XPTracker />
-            <LifeDisplay />
-            <GameOverScreen />
-            {children}
-          </LifeProvider>
-        </ThemeProvider>
+          <ThemeProvider>
+            <LifeProvider>
+              <XPTracker />
+              <LifeDisplay />
+              <GameOverScreen />
+              {children}
+            </LifeProvider>
+          </ThemeProvider>
       </body>
     </html>
   )

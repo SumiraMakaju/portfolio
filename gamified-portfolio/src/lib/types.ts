@@ -45,6 +45,8 @@ export interface SiteConfig {
   email: string
   github: string
   linkedin: string
+  figmaUrl?: string
+  canvaUrl?: string
   resumeUrl: string
   weatherLocation: string
   education: {

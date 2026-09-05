@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useTheme } from "@/components/layout/ThemeProvider"
-import { FileText } from "lucide-react"
+import { FileText, Palette } from "lucide-react"
 import TypewriterText from "@/components/ui/TypewriterText"
 import { siteConfig } from "@/lib/config"
 import {FaGithub as Github} from "react-icons/fa"

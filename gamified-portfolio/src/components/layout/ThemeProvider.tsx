@@ -29,8 +29,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const isKonamiUnlocked = useKonamiCode()
 
   const setCharacter = useCallback((id: CharacterId) => {
-    setCharacterState(id)
-    setTheme(themes[id])
+
+    document.body.classList.add("glitch-active")
+    setTimeout(() => {
+      setCharacterState(id)
+      localStorage.setItem("character", id)
+      setTheme(themes[id])
+      document.body.classList.remove("glitch-active")
+    }, 200) // Delay change slightly to match glitch peak
   }, [])
 
   useEffect(() => {
