@@ -31,14 +31,14 @@ export const siteConfig: SiteConfig = {
         "Developed design templates for certification.",
       ],
     },
-    /*{
-      title: "marketing and design ",
-      organization: "AR treasurehunt",
+    {
+      title: "Honourable Mention",
+      organization: "Google Hackathon (TMT Translator)",
       details: [
-        "Actively participated in designing social media posts.Designed banners and posters for the events in IT MEET.Leaflet and Magazine Designing for the IT MEET 2024.Design Template for the certification ",
-        //"   ",
+        "Recognized with an Honourable Mention for developing the TMT Translator.",
+        "Built a real-time Chrome extension capable of translating webpage text and video captions between English, Nepali, and Tamang.",
       ],
-    },*/
+    },
   ],
   skills: [
     {
