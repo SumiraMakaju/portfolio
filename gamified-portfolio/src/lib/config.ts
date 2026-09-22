@@ -2,7 +2,7 @@ import { SiteConfig } from "./types"
 
 export const siteConfig: SiteConfig = {
   name: "SUMIRA MAKAJU",
-  title: "Game Dev | Graphic Designer | Frontend Developer | AI/ML Enthusiast",
+  title: "Game Dev | Graphic Designer | Fullstack Developer | AI/ML Enthusiast",
   location: "Bhaktapur, Nepal",
   bio: [
     "Creative Game Developer and Graphic Designer with a passion for crafting immersive experiences. Skilled in Unity, C#, and 3D Math, I bring virtual worlds to life with engaging gameplay and stunning visuals.",
