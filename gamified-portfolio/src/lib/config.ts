@@ -14,7 +14,7 @@ export const siteConfig: SiteConfig = {
   linkedin: "https://www.linkedin.com/in/sumira-makaju/",
   figmaUrl: "https://www.figma.com/design/S2DcjCrq76nlwyB6ZooKxr/Untitled?node-id=0-1&t=9X5EWysZGDmwAvd8-1",
   canvaUrl: "https://canva.link/lv91hvd4df11s49",
-  resumeUrl: "https://drive.google.com/file/d/145Xjx5r7j_tIAL0Iu59ExqwDdQepzKha/view?usp=sharing",
+  resumeUrl: "https://drive.google.com/file/d/1WtNtEyrULcmo2c1rkADEFndCu352WTB0/view?usp=sharing",
   weatherLocation: "Bhaktapur, Nepal",
   education: {
     institution: "Kathmandu University",
